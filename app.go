@@ -55,7 +55,6 @@ func (a *App) Run(method string, url string, body string, contentType string) (R
 	}
 
 	result.BodyContent = string(buf)
-	fmt.Printf("%+v", result)
 	return result, nil
 
 }
