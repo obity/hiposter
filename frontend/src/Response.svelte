@@ -12,12 +12,7 @@
 </script>
 
 <div class="response">
-    <TextArea
-        bind:value={result}
-        labelText="Response"
-        placeholder="返回结果"
-        rows={10}
-    />
+    <textarea bind:value={result} placeholder="返回结果" rows={10} />
 </div>
 
 <style>
@@ -29,5 +24,9 @@
         height: auto;
         text-align: left;
         padding: 8px;
+    }
+
+    textarea {
+        width: 100%;
     }
 </style>

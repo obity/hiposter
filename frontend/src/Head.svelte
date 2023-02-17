@@ -10,6 +10,8 @@
     let methods = ["GET", "POST", "PATCH", "DELETE", "HEAD"];
     export let theMethod;
     export let url = "";
+    export let btnValue = "Send";
+    export let disabled = false;
 </script>
 
 <h3>{url}</h3>
@@ -33,7 +35,7 @@
             placeholder="Enter Request URL..."
         />
     </div>
-    <Button on:click size="small">Send</Button>
+    <Button on:click type="submit" size="small">{btnValue}</Button>
 </div>
 
 <style>
