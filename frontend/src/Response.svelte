@@ -12,12 +12,13 @@
 </script>
 
 <div class="response">
-    <textarea bind:value={result} placeholder="返回结果" rows={25} />
+    <textarea bind:value={result} placeholder="返回结果" rows={25} readonly />
 </div>
 
 <style>
     .response {
         text-align: left;
+
         border: 1px solid silver;
         margin-top: 5px;
         width: auto;
@@ -28,5 +29,6 @@
 
     textarea {
         width: 100%;
+        font-size: 15px;
     }
 </style>

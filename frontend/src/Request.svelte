@@ -17,7 +17,7 @@
 </script>
 
 <ContentSwitcher
-    style="min-width:300px; max-width:600px; "
+    style="min-width:300px; max-width:600px; font-size: 15px;"
     size="sm"
     bind:selectedIndex={selectIndex}
 >
