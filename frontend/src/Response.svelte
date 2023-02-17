@@ -7,10 +7,17 @@
         Switch,
         TextArea,
     } from "carbon-components-svelte";
+
+    export let result;
 </script>
 
 <div class="response">
-    <TextArea labelText="Response" placeholder="返回结果" rows={15} />
+    <TextArea
+        bind:value={result}
+        labelText="Response"
+        placeholder="返回结果"
+        rows={10}
+    />
 </div>
 
 <style>

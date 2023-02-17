@@ -4,4 +4,4 @@
     export let value = "{}";
 </script>
 
-<TextArea bind:value labelText="Json" placeholder="请输入JSON数据" rows={17} />
+<TextArea bind:value labelText="Json" placeholder="请输入JSON数据" rows={10} />

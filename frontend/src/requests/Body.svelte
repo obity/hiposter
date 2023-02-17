@@ -2,25 +2,27 @@
     import "carbon-components-svelte/css/white.css";
     import { RadioButtonGroup, RadioButton } from "carbon-components-svelte";
     import JsonInput from "./JsonInput.svelte";
-    let bodyTypes = [
-        "none",
-        "form-data",
-        "x-www-from-urlencoded",
-        "JSON",
-        "Text",
-        "XML",
-        "HTML",
-        "JavaScript",
-        "binary",
+    let contentTypes = [
+        { k: "none", v: "none" },
+        { k: "form-data", v: "application/form-data" },
+        { k: "x-www-from-urlencoded", v: "application/x-www-from-urlencoded" },
+        { k: "JSON", v: "application/json" },
+        { k: "Text", v: "application/text" },
+        { k: "XML", v: "application/xml" },
+        { k: "HTML", v: "application/html" },
+        { k: "JavaScript", v: "application/javaScript" },
+        { k: "binary", v: "application/binary" },
     ];
-    let selectdType = "JSON";
+    export let contentType = "none";
+    export let value;
 </script>
 
-<RadioButtonGroup bind:selected={selectdType}>
-    {#each bodyTypes as t}
-        <RadioButton labelText={t} value={t} />
+<!-- {@debug contentType} -->
+<RadioButtonGroup bind:selected={contentType}>
+    {#each contentTypes as { k, v }}
+        <RadioButton labelText={k} value={v} />
     {/each}
 </RadioButtonGroup>
-{#if selectdType == "JSON"}
-    <JsonInput />
+{#if contentType == "application/json"}
+    <JsonInput bind:value />
 {/if}

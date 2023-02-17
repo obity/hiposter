@@ -12,9 +12,10 @@
     let options = ["Params", "Headers", "Body"];
     let selectIndex = 0;
     $: selectOption = options[selectIndex];
+    export let bodyContent;
+    export let contentType;
 </script>
 
-{@debug selectOption}
 <ContentSwitcher
     style="min-width:300px; max-width:600px; "
     size="sm"
@@ -25,7 +26,10 @@
     {/each}
 </ContentSwitcher>
 <div class="request">
-    {#if selectOption == "Body"}<Body />{/if}
+    {#if selectOption == "Body"}<Body
+            bind:value={bodyContent}
+            bind:contentType
+        />{/if}
 </div>
 
 <style>
@@ -33,7 +37,8 @@
         border: 1px solid silver;
         margin-top: 5px;
         width: auto;
-        height: 408px;
+        min-width: 200px;
+        min-height: 280px;
         text-align: left;
         padding: 8px;
     }

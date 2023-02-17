@@ -8,8 +8,8 @@
     } from "carbon-components-svelte";
 
     let methods = ["GET", "POST", "PATCH", "DELETE", "HEAD"];
-    let theMethod;
-    let url = "";
+    export let theMethod;
+    export let url = "";
 </script>
 
 <h3>{url}</h3>
@@ -33,7 +33,7 @@
             placeholder="Enter Request URL..."
         />
     </div>
-    <Button size="small">Send</Button>
+    <Button on:click size="small">Send</Button>
 </div>
 
 <style>

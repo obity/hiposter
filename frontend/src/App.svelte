@@ -1,23 +1,36 @@
 <script>
   import logo from "./assets/images/logo-universal.png";
-  import { Greet } from "../wailsjs/go/main/App.js";
+  import { Greet, Run } from "../wailsjs/go/main/App.js";
   import Head from "./Head.svelte";
   import Request from "./Request.svelte";
   import Response from "./Response.svelte";
 
   let resultText = "Please enter your name below 👇";
   let name;
-
+  let method;
+  let url;
+  let bodyContent;
+  let result;
+  let contentType;
+  let resultJson;
   function greet() {
     Greet(name).then((result) => (resultText = result));
   }
+
+  function run() {
+    console.log(bodyContent, method, url);
+    Run(method, url, bodyContent, contentType).then(
+      (res) => (result = res.bodyContent)
+    );
+  }
 </script>
 
+<!-- {@debug method, url, result} -->
 <!-- {@debug name} -->
-<main style="margin-left: 40px; width: 95%;">
-  <Head />
-  <Request />
-  <Response />
+<main style="margin-left: 20px; margin-right:20px; min-width:400px">
+  <Head on:click={run} bind:theMethod={method} bind:url />
+  <Request bind:bodyContent bind:contentType />
+  <Response bind:result />
   <!-- <img alt="Wails logo" id="logo" src="{logo}">
   <div class="result" id="result">{resultText}</div>
   <div class="input-box" id="input">
