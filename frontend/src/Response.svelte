@@ -12,7 +12,7 @@
 </script>
 
 <div class="response">
-    <textarea bind:value={result} placeholder="返回结果" rows={10} />
+    <textarea bind:value={result} placeholder="返回结果" rows={25} />
 </div>
 
 <style>

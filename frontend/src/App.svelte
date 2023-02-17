@@ -13,7 +13,7 @@
   let url = "";
   let bodyContent;
   let result;
-  let contentType;
+  let contentType = "none";
   let btnValue = "Send";
   let disabled = false;
   function greet() {
@@ -30,7 +30,13 @@
     Run(method, url, bodyContent, contentType).then((res) => {
       disabled = false;
       btnValue = "Send";
-      return (result = res.bodyContent);
+      if (contentType == "application/json") {
+        let jsonPretty = JSON.stringify(JSON.parse(res.bodyContent), null, 8);
+
+        return (result = jsonPretty);
+      } else {
+        return (result = res.bodyContent);
+      }
     });
   }
 </script>
