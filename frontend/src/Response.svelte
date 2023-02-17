@@ -9,13 +9,17 @@
     } from "carbon-components-svelte";
 
     export let result;
+    export let responseStatus;
+    export let time;
 </script>
 
 <div class="response">
     {#if result}
         <div>
-            <label>Status:<span class="statusValue">200</span></label>
-            <label>Time: <span class="statusValue">279ms</span></label>
+            <label
+                >Status:<span class="statusValue">{responseStatus}</span></label
+            >
+            <label>Time: <span class="statusValue">{time}</span></label>
         </div>
     {/if}
     <textarea bind:value={result} placeholder="返回结果" rows={25} readonly />

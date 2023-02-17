@@ -16,6 +16,8 @@
   let contentType = "none";
   let btnValue = "Send";
   let disabled = false;
+  let responseStatus;
+  let time;
   function greet() {
     Greet(name).then((result) => (resultText = result));
   }
@@ -27,9 +29,13 @@
     btnValue = "Sending";
     disabled = true;
     result = "";
+    let start = new Date().getTime();
     Run(method, url, bodyContent, contentType).then((res) => {
+      let end = new Date().getTime();
+      time = end - start + "ms";
       disabled = false;
       btnValue = "Send";
+      responseStatus = res.httpStatus;
       if (contentType == "application/json") {
         let jsonPretty = JSON.stringify(JSON.parse(res.bodyContent), null, 8);
 
@@ -50,7 +56,7 @@
     bind:url
   />
   <Request bind:bodyContent bind:contentType />
-  <Response bind:result />
+  <Response bind:result {responseStatus} {time} />
 </main>
 
 <style>
