@@ -12,6 +12,12 @@
 </script>
 
 <div class="response">
+    {#if result}
+        <div>
+            <label>Status:<span class="statusValue">200</span></label>
+            <label>Time: <span class="statusValue">279ms</span></label>
+        </div>
+    {/if}
     <textarea bind:value={result} placeholder="返回结果" rows={25} readonly />
 </div>
 
@@ -30,5 +36,8 @@
     textarea {
         width: 100%;
         font-size: 15px;
+    }
+    .statusValue {
+        color: green;
     }
 </style>
