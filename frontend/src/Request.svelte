@@ -38,7 +38,7 @@
         margin-top: 5px;
         width: auto;
         min-width: 200px;
-        min-height: 280px;
+        min-height: 250px;
         text-align: left;
         padding: 8px;
     }

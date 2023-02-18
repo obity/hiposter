@@ -40,6 +40,7 @@
     textarea {
         width: 100%;
         font-size: 15px;
+        height: 100%;
     }
     .statusValue {
         color: green;

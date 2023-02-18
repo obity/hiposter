@@ -4,7 +4,7 @@
     export let value = "{}";
 </script>
 
-<textarea bind:value placeholder="请输入JSON数据" rows={20} />
+<textarea bind:value placeholder="请输入JSON数据" rows={15} />
 
 <style>
     textarea {
