@@ -22,7 +22,7 @@
             <label>Time: <span class="statusValue">{time}</span></label>
         </div>
     {/if}
-    <textarea bind:value={result} placeholder="返回结果" rows={25} readonly />
+    <textarea bind:value={result} placeholder="返回结果" rows={12} />
 </div>
 
 <style>
