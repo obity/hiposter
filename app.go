@@ -34,6 +34,7 @@ type Result struct {
 	HttpStatus   string `json:"httpStatus"`
 	BodyContent  string `json:"bodyContent"`
 	ErrorContent string `json:"errorContent"`
+	ContentType  string `json:"contentType"`
 }
 
 func (a *App) Run(method string, url string, body string, contentType string) (Result, error) {
@@ -41,6 +42,9 @@ func (a *App) Run(method string, url string, body string, contentType string) (R
 	var result Result
 	req, err := http.NewRequest(method, url, bytes.NewReader([]byte(body)))
 	req.Header.Set("Content-Type", contentType)
+	req.Header.Set("User-Agent", "hiposter/0.0.4")
+	req.Header.Set("Accept", "*/*")
+	req.Header.Set("Connection", "keep-alive")
 	cli := http.Client{}
 	response, err := cli.Do(req)
 	if err != nil {
@@ -49,11 +53,11 @@ func (a *App) Run(method string, url string, body string, contentType string) (R
 	defer response.Body.Close()
 	result.StatusCode = response.StatusCode
 	result.HttpStatus = response.Status
+	result.ContentType = response.Header.Get("Content-Type")
 	buf, err := io.ReadAll(response.Body)
 	if err != nil {
 		return result, fmt.Errorf("read body error: %v", err)
 	}
-
 	result.BodyContent = string(buf)
 	return result, nil
 

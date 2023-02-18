@@ -1,5 +1,7 @@
 <script>
     import "carbon-components-svelte/css/white.css";
+    // import JSONTree from "svelte-json-tree";
+    import { JsonView } from "@zerodevx/svelte-json-view";
     import {
         TextInput,
         Button,
@@ -8,11 +10,13 @@
         TextArea,
     } from "carbon-components-svelte";
 
-    export let result;
+    export let result = "";
     export let responseStatus;
+    export let responseContentType;
     export let time;
 </script>
 
+{@debug result}
 <div class="response">
     {#if result}
         <div>
@@ -22,7 +26,20 @@
             <label>Time: <span class="statusValue">{time}</span></label>
         </div>
     {/if}
-    <textarea bind:value={result} placeholder="返回结果" rows={12} />
+    {#if responseContentType == "application/json"}
+        <!-- <div class="wrap" style="overflow: scroll;">
+            <JsonView calss="tree" json={JSON.parse(result)} />
+        </div> -->
+        <!-- <JsonView class="tree" json={JSON.parse(result)} /> -->
+        <!-- <JSONTree
+            class="tree"
+            value={JSON.parse(result)}
+            defaultExpandedLevel={3}
+        /> -->
+        <textarea bind:value={result} placeholder="返回结果" rows={12} />
+    {:else}
+        <textarea bind:value={result} placeholder="返回结果" rows={12} />
+    {/if}
 </div>
 
 <style>
@@ -44,5 +61,8 @@
     }
     .statusValue {
         color: green;
+    }
+    .wrap {
+        overflow: scroll;
     }
 </style>

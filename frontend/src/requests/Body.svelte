@@ -3,7 +3,7 @@
     import { RadioButtonGroup, RadioButton } from "carbon-components-svelte";
     import JsonInput from "./JsonInput.svelte";
     let contentTypes = [
-        { k: "none", v: "none" },
+        { k: "none", v: "application/none" },
         { k: "form-data", v: "application/form-data" },
         { k: "x-www-from-urlencoded", v: "application/x-www-from-urlencoded" },
         { k: "JSON", v: "application/json" },
@@ -13,7 +13,7 @@
         { k: "JavaScript", v: "application/javaScript" },
         { k: "binary", v: "application/binary" },
     ];
-    export let contentType = "none";
+    export let contentType = "application/none";
     export let value;
 </script>
 

@@ -13,11 +13,12 @@
   let url = "";
   let bodyContent;
   let result;
-  let contentType = "none";
+  let contentType = "application/none";
   let btnValue = "Send";
   let disabled = false;
   let responseStatus;
   let time;
+  let responseContentType;
   function greet() {
     Greet(name).then((result) => (resultText = result));
   }
@@ -36,8 +37,9 @@
       disabled = false;
       btnValue = "Send";
       responseStatus = res.httpStatus;
-      if (contentType == "application/json") {
-        let jsonPretty = JSON.stringify(JSON.parse(res.bodyContent), null, 8);
+      responseContentType = res.contentType;
+      if (responseContentType == "application/json") {
+        let jsonPretty = JSON.stringify(JSON.parse(res.bodyContent), null, 20);
 
         return (result = jsonPretty);
       } else {
@@ -56,7 +58,7 @@
     bind:url
   />
   <Request bind:bodyContent bind:contentType />
-  <Response bind:result {responseStatus} {time} />
+  <Response bind:result {responseStatus} {time} {responseContentType} />
 </main>
 
 <style>
