@@ -1,10 +1,10 @@
 <script>
     import "carbon-components-svelte/css/white.css";
     import { TextArea } from "carbon-components-svelte";
-    export let value = "{}";
+    export let value;
 </script>
 
-<textarea bind:value placeholder="请输入JSON数据" rows={15} />
+<TextArea bind:value placeholder="请输入JSON数据" rows={15} />
 
 <style>
     textarea {

@@ -1,14 +1,6 @@
 <script>
     import "carbon-components-svelte/css/white.css";
-    import {
-        Checkbox,
-        TextInput,
-        Form,
-        FormGroup,
-        FormItem,
-        Button,
-        FormLabel,
-    } from "carbon-components-svelte";
+    import { TextInput, Button } from "carbon-components-svelte";
     import RowInsert from "carbon-icons-svelte/lib/AddFilled.svelte";
     import RowDelete from "carbon-icons-svelte/lib/TrashCan.svelte";
     export let headers = [{ id: 0, key: "", value: "" }];
@@ -16,7 +8,6 @@
     let index = 0;
     $: newLine = { id: index + 1, key: "", value: "" };
     function addItem() {
-        // console.log(headers);
         index += 1;
         headers.push(newLine);
         headers = headers;

@@ -1,11 +1,6 @@
 <script>
     import "carbon-components-svelte/css/white.css";
-    import {
-        TextInput,
-        Button,
-        ContentSwitcher,
-        Switch,
-    } from "carbon-components-svelte";
+    import { ContentSwitcher, Switch } from "carbon-components-svelte";
 
     import Body from "./requests/Body.svelte";
     import Headers from "./requests/Headers.svelte";
