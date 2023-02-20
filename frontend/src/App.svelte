@@ -19,6 +19,7 @@
   let responseStatus;
   let time;
   let responseContentType;
+  let headers;
   function greet() {
     Greet(name).then((result) => (resultText = result));
   }
@@ -31,7 +32,7 @@
     disabled = true;
     result = "";
     let start = new Date().getTime();
-    Run(method, url, bodyContent, contentType).then((res) => {
+    Run(method, url, bodyContent, contentType, headers).then((res) => {
       let end = new Date().getTime();
       time = end - start + "ms";
       disabled = false;
@@ -57,7 +58,7 @@
     bind:disabled
     bind:url
   />
-  <Request bind:bodyContent bind:contentType />
+  <Request bind:bodyContent bind:contentType bind:headers />
   <Response bind:result {responseStatus} {time} {responseContentType} />
 </main>
 

@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"strings"
 )
 
 // App struct
@@ -36,8 +37,12 @@ type Result struct {
 	ErrorContent string `json:"errorContent"`
 	ContentType  string `json:"contentType"`
 }
+type Header struct {
+	Key   string `json:"key"`
+	Value string `json:"value`
+}
 
-func (a *App) Run(method string, url string, body string, contentType string) (Result, error) {
+func (a *App) Run(method string, url string, body string, contentType string, headers []Header) (Result, error) {
 	var err error
 	var result Result
 	req, err := http.NewRequest(method, url, bytes.NewReader([]byte(body)))
@@ -45,6 +50,11 @@ func (a *App) Run(method string, url string, body string, contentType string) (R
 	req.Header.Set("User-Agent", "hiposter/0.0.4")
 	req.Header.Set("Accept", "*/*")
 	req.Header.Set("Connection", "keep-alive")
+	for _, h := range headers {
+		if strings.TrimSpace(h.Key) != "" {
+			req.Header.Set(h.Key, h.Value)
+		}
+	}
 	cli := http.Client{}
 	response, err := cli.Do(req)
 	if err != nil {

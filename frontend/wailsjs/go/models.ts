@@ -1,5 +1,17 @@
 export namespace main {
 	
+	export class Header {
+	    key: string;
+	
+	    static createFrom(source: any = {}) {
+	        return new Header(source);
+	    }
+	
+	    constructor(source: any = {}) {
+	        if ('string' === typeof source) source = JSON.parse(source);
+	        this.key = source["key"];
+	    }
+	}
 	export class Result {
 	    statusCode: number;
 	    httpStatus: string;

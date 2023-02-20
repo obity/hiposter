@@ -8,12 +8,14 @@
     } from "carbon-components-svelte";
 
     import Body from "./requests/Body.svelte";
+    import Headers from "./requests/Headers.svelte";
 
     let options = ["Params", "Headers", "Body"];
     let selectIndex = 0;
     $: selectOption = options[selectIndex];
     export let bodyContent;
     export let contentType;
+    export let headers;
 </script>
 
 <ContentSwitcher
@@ -30,6 +32,8 @@
             bind:value={bodyContent}
             bind:contentType
         />{/if}
+    {#if selectOption == "Headers"}
+        <Headers bind:headers />{/if}
 </div>
 
 <style>
