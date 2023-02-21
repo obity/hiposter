@@ -20,7 +20,7 @@
 </script>
 
 <div>
-    <div class="row">
+    <div class="title">
         <div class="clos"><span>KEY</span></div>
         <div class="clos" style="border-left: 0.5px solid silver;">
             <span>VALUE</span>
@@ -30,16 +30,20 @@
         <div class="row">
             <TextInput
                 class="clos"
-                placeholder="key"
+                placeholder="Key"
                 bind:value={key}
-                style="ma"
+                size="sm"
+                light
+                style="border-bottom: 0;"
             />
 
             <TextInput
                 class="clos"
-                placeholder="value"
+                placeholder="Value"
                 bind:value
-                style="margin-left:10px;"
+                size="sm"
+                light
+                style="margin-left:0px;border-bottom: 0;border-left:1px solid silver"
             />
         </div>
     {/each}
@@ -60,22 +64,33 @@
 </div>
 
 <style>
+    .title {
+        display: flex;
+        border-left: 1px solid silver;
+        border-right: 1px solid silver;
+        border-bottom: 0.5px solid silver;
+        border-top: 1px solid silver;
+        width: auto;
+        align-items: center;
+    }
+    span {
+        margin-left: 15px;
+        font-weight: bold;
+    }
     .row {
         display: flex;
         border-left: 1px solid silver;
         border-right: 1px solid silver;
         border-bottom: 0.5px solid silver;
-        border-top: 0.5px solid silver;
+        border-top: 0px solid silver;
         width: auto;
-        padding: 5px;
         align-items: center;
-        margin-left: 2px;
     }
     .clos {
         display: flex;
         width: 100%;
         height: 30px;
         align-items: center;
-        padding-left: 8px;
+        text-align: left;
     }
 </style>
