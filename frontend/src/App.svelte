@@ -59,7 +59,7 @@
       btnValue = "Send";
       responseStatus = res.httpStatus;
       responseContentType = res.contentType;
-      if (responseContentType == "application/json") {
+      if (responseContentType.startsWith("application/json")) {
         let jsonPretty = JSON.stringify(JSON.parse(res.bodyContent), null, 20);
 
         return (result = jsonPretty);
@@ -75,7 +75,6 @@
     on:click={run}
     bind:theMethod={method}
     {btnValue}
-    bind:disabled
     bind:url
   />
   <Request

@@ -11,8 +11,8 @@
     } from "carbon-components-svelte";
 
     export let result = "";
-    export let responseStatus;
-    export let responseContentType;
+    export let responseStatus = "";
+    export let responseContentType = "";
     export let time;
 </script>
 
@@ -20,13 +20,11 @@
 <div class="response">
     {#if result}
         <div>
-            <label
-                >Status:<span class="statusValue">{responseStatus}</span></label
-            >
-            <label>Time: <span class="statusValue">{time}</span></label>
+            Status:<span class="statusValue">{responseStatus}</span>
+            Time: <span class="statusValue">{time}</span>
         </div>
     {/if}
-    {#if responseContentType == "application/json"}
+    {#if responseContentType.startsWith("application/json")}
         <!-- <div class="wrap" style="overflow: scroll;">
             <JsonView calss="tree" json={JSON.parse(result)} />
         </div> -->
@@ -62,7 +60,7 @@
     .statusValue {
         color: green;
     }
-    .wrap {
+    /* .wrap {
         overflow: scroll;
-    }
+    } */
 </style>

@@ -4,11 +4,8 @@
     export let value;
 </script>
 
-<TextArea bind:value placeholder="请输入JSON数据" rows={15} />
+<TextArea bind:value placeholder="请输入JSON数据" rows={15} light/>
 
 <style>
-    textarea {
-        font-size: 15px;
-        width: 100%;
-    }
+
 </style>

@@ -39,13 +39,16 @@ type Result struct {
 }
 type Header struct {
 	Key   string `json:"key"`
-	Value string `json:"value`
+	Value string `json:"value"`
 }
 
 func (a *App) Run(method string, url string, body string, contentType string, headers []Header) (Result, error) {
 	var err error
 	var result Result
 	req, err := http.NewRequest(method, url, bytes.NewReader([]byte(body)))
+	if err != nil {
+		return result, fmt.Errorf("NewRequest failed: %v", err)
+	}
 	req.Header.Set("Content-Type", contentType)
 	req.Header.Set("User-Agent", "hiposter/0.0.4")
 	req.Header.Set("Accept", "*/*")

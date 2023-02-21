@@ -11,10 +11,9 @@
     export let theMethod;
     export let url = "";
     export let btnValue = "Send";
-    export let disabled = false;
 </script>
 
-<h3>{url}</h3>
+<h6>{url}</h6>
 <div class="myhead">
     <Select
         noLabel
@@ -39,11 +38,11 @@
 </div>
 
 <style>
-    h3 {
+    h6 {
         display: flex;
         align-items: center;
         height: 30px;
-        margin-left: 50px;
+        margin-left: 20px;
     }
     .myhead {
         display: flex;
