@@ -2,6 +2,7 @@
     import "carbon-components-svelte/css/white.css";
     import { RadioButtonGroup, RadioButton } from "carbon-components-svelte";
     import JsonInput from "./JsonInput.svelte";
+    import OtherInput from "./otherInput.svelte";
     let contentTypes = [
         { k: "none", v: "application/none" },
         { k: "form-data", v: "application/form-data" },
@@ -25,4 +26,6 @@
 </RadioButtonGroup>
 {#if contentType == "application/json"}
     <JsonInput bind:value />
+    {:else}
+    <OtherInput bind:value placeholder={contentType}></OtherInput>
 {/if}
