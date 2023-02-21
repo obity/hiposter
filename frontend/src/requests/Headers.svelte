@@ -3,17 +3,23 @@
     import { TextInput, Button } from "carbon-components-svelte";
     import RowInsert from "carbon-icons-svelte/lib/AddFilled.svelte";
     import RowDelete from "carbon-icons-svelte/lib/TrashCan.svelte";
+    import { writable } from "svelte/store";
     export let headers = [{ id: 0, key: "", value: "" }];
 
-    let index = 0;
-    $: newLine = { id: index + 1, key: "", value: "" };
+    let index;
+    const count = writable(1);
+    const unsubscribe = count.subscribe((value) => {
+        index = value;
+        // console.log(index);
+    });
+    $: newLine = { id: index, key: "", value: "" };
     function addItem() {
-        index += 1;
+        count.update((n) => n + 1);
         headers.push(newLine);
         headers = headers;
     }
     function deleteItem() {
-        index -= 1;
+        count.update((n) => n - 1);
         headers.pop();
         headers = headers;
     }
@@ -52,6 +58,7 @@
         size="small"
         iconDescription="row insert"
         on:click={addItem}
+        on:click
         icon={RowInsert}
     />
     <Button

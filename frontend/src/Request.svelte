@@ -4,6 +4,7 @@
 
     import Body from "./requests/Body.svelte";
     import Headers from "./requests/Headers.svelte";
+    import Params from "./requests/Params.svelte";
 
     let options = ["Params", "Headers", "Body"];
     let selectIndex = 0;
@@ -11,6 +12,7 @@
     export let bodyContent;
     export let contentType;
     export let headers;
+    export let params;
 </script>
 
 <ContentSwitcher
@@ -26,9 +28,17 @@
     {#if selectOption == "Body"}<Body
             bind:value={bodyContent}
             bind:contentType
-        />{/if}
+        />
+    {/if}
+
     {#if selectOption == "Headers"}
-        <Headers bind:headers />{/if}
+        <legend>Headers</legend>
+        <Headers bind:headers />
+    {/if}
+    {#if selectOption == "Params"}
+        <legend>Query Params</legend>
+        <Params on:click bind:params />
+    {/if}
 </div>
 
 <style>
@@ -40,5 +50,8 @@
         min-height: 250px;
         text-align: left;
         padding: 8px;
+    }
+    legend {
+        margin-bottom: 5px;
     }
 </style>

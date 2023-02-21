@@ -6,6 +6,7 @@
   import Request from "./Request.svelte";
   import Response from "./Response.svelte";
   import { debug } from "svelte/internal";
+  import { UserRole } from "carbon-icons-svelte";
 
   let resultText = "Please enter your name below 👇";
   let name;
@@ -20,6 +21,25 @@
   let time;
   let responseContentType;
   let headers;
+  let args = "";
+  let params = [{ id: 0, key: "", value: "" }];
+  $: {
+    args = "";
+    for (const v of params) {
+      if (v.key != "") {
+        if (args == "") {
+          args += "?" + v.key + "=" + v.value;
+        } else {
+          args += "&" + v.key + "=" + v.value;
+        }
+      }
+    }
+    args = args;
+  }
+  function updateArgs() {
+    url = url.split("?")[0] + args;
+  }
+
   function greet() {
     Greet(name).then((result) => (resultText = result));
   }
@@ -58,7 +78,13 @@
     bind:disabled
     bind:url
   />
-  <Request bind:bodyContent bind:contentType bind:headers />
+  <Request
+    on:click={updateArgs}
+    bind:bodyContent
+    bind:contentType
+    bind:headers
+    bind:params
+  />
   <Response bind:result {responseStatus} {time} {responseContentType} />
 </main>
 

@@ -16,7 +16,7 @@
     export let time;
 </script>
 
-{@debug result}
+<!-- {@debug result} -->
 <div class="response">
     {#if result}
         <div>
