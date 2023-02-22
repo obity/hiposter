@@ -17,6 +17,7 @@
     ];
     export let contentType = "application/none";
     export let value;
+    export let files;
 </script>
 
 <!-- {@debug contentType} -->
@@ -28,7 +29,7 @@
 {#if contentType == "application/json"}
     <JsonInput bind:value />
 {:else if contentType == "application/binary"}
-    <BinaryInput bind:files={value} />
+    <BinaryInput bind:files />
 {:else}
     <OtherInput bind:value placeholder={contentType} />
 {/if}

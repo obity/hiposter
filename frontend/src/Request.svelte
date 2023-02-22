@@ -13,6 +13,7 @@
     export let contentType;
     export let headers;
     export let params;
+    export let files;
 </script>
 
 <ContentSwitcher
@@ -28,6 +29,7 @@
     {#if selectOption == "Body"}<Body
             bind:value={bodyContent}
             bind:contentType
+            bind:files
         />
     {/if}
 

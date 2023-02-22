@@ -23,6 +23,7 @@
   let headers;
   let args = "";
   let params = [{ id: 0, key: "", value: "" }];
+  let files;
   $: {
     args = "";
     for (const v of params) {
@@ -71,18 +72,14 @@
 </script>
 
 <main style="margin-left: 20px; margin-right:20px; min-width:400px">
-  <Head
-    on:click={run}
-    bind:theMethod={method}
-    {btnValue}
-    bind:url
-  />
+  <Head on:click={run} bind:theMethod={method} {btnValue} bind:url />
   <Request
     on:click={updateArgs}
     bind:bodyContent
     bind:contentType
     bind:headers
     bind:params
+    bind:files
   />
   <Response bind:result {responseStatus} {time} {responseContentType} />
 </main>
