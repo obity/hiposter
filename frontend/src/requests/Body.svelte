@@ -4,6 +4,8 @@
     import JsonInput from "./JsonInput.svelte";
     import OtherInput from "./otherInput.svelte";
     import BinaryInput from "./binaryInput.svelte";
+    import UrlencodedInput from "./urlencodedInput.svelte";
+    import { bind } from "svelte/internal";
     let contentTypes = [
         { k: "none", v: "application/none" },
         { k: "form-data", v: "application/form-data" },
@@ -30,6 +32,8 @@
     <JsonInput bind:value />
 {:else if contentType == "application/binary"}
     <BinaryInput bind:files />
+{:else if contentType == "application/none"}{:else if contentType == "application/x-www-from-urlencoded"}
+    <UrlencodedInput bind:value />
 {:else}
     <OtherInput bind:value placeholder={contentType} />
 {/if}
