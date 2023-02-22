@@ -5,7 +5,6 @@
     import OtherInput from "./otherInput.svelte";
     import BinaryInput from "./binaryInput.svelte";
     import UrlencodedInput from "./urlencodedInput.svelte";
-    import { bind } from "svelte/internal";
     let contentTypes = [
         { k: "none", v: "application/none" },
         { k: "form-data", v: "application/form-data" },
