@@ -36,7 +36,7 @@
     <div
         style="overflow: auto;height:280px"
     />{:else if contentType == "application/x-www-from-urlencoded"}
-    <UrlencodedInput bind:value />
+    <UrlencodedInput bind:urlencodedBody={value} />
 {:else}
     <OtherInput bind:value />
 {/if}
