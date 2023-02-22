@@ -13,7 +13,7 @@
   let method;
   let url = "";
   let bodyContent;
-  let result;
+  let result="";
   let contentType = "application/none";
   let btnValue = "Send";
   let disabled = false;
@@ -26,17 +26,17 @@
   let params = [{ id: 0, key: "", value: "" }];
   let files;
   $: {
-    args = "";
+    let s = "";
     for (const v of params) {
       if (v.key != "") {
-        if (args == "") {
-          args += "?" + v.key + "=" + v.value;
+        if (s == "") {
+          s += "?" + v.key + "=" + v.value;
         } else {
-          args += "&" + v.key + "=" + v.value;
+          s += "&" + v.key + "=" + v.value;
         }
       }
     }
-    args = args;
+    args = s;
   }
   function updateArgs() {
     url = url.split("?")[0] + args;
