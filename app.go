@@ -31,11 +31,12 @@ func (a *App) Greet(name string) string {
 }
 
 type Result struct {
-	StatusCode   int    `json:"statusCode"`
-	HttpStatus   string `json:"httpStatus"`
-	BodyContent  string `json:"bodyContent"`
-	ErrorContent string `json:"errorContent"`
-	ContentType  string `json:"contentType"`
+	StatusCode   int      `json:"statusCode"`
+	HttpStatus   string   `json:"httpStatus"`
+	BodyContent  string   `json:"bodyContent"`
+	ErrorContent string   `json:"errorContent"`
+	ContentType  string   `json:"contentType"`
+	Headers      []Header `json:"headers"`
 }
 type Header struct {
 	Key   string `json:"key"`
@@ -64,14 +65,28 @@ func (a *App) Run(method string, url string, body string, contentType string, he
 		return result, fmt.Errorf("http Do failed: %v", err)
 	}
 	defer response.Body.Close()
+
 	result.StatusCode = response.StatusCode
 	result.HttpStatus = response.Status
 	result.ContentType = response.Header.Get("Content-Type")
+	result.Headers = parseResponseHeaders(&response.Header)
 	buf, err := io.ReadAll(response.Body)
 	if err != nil {
 		return result, fmt.Errorf("read body error: %v", err)
 	}
 	result.BodyContent = string(buf)
 	return result, nil
+
+}
+
+func parseResponseHeaders(data *http.Header) []Header {
+	var result []Header
+	for k, v := range *data {
+		h := Header{}
+		h.Key = k
+		h.Value = strings.Join(v, "")
+		result = append(result, h)
+	}
+	return result
 
 }

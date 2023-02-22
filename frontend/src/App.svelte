@@ -20,6 +20,7 @@
   let responseStatus;
   let time;
   let responseContentType;
+  let responseHeaders;
   let headers;
   let args = "";
   let params = [{ id: 0, key: "", value: "" }];
@@ -60,6 +61,7 @@
       btnValue = "Send";
       responseStatus = res.httpStatus;
       responseContentType = res.contentType;
+      responseHeaders = res.headers;
       if (responseContentType.startsWith("application/json")) {
         let jsonPretty = JSON.stringify(JSON.parse(res.bodyContent), null, 20);
 
@@ -81,7 +83,13 @@
     bind:params
     bind:files
   />
-  <Response bind:result {responseStatus} {time} {responseContentType} />
+  <Response
+    bind:result
+    {responseStatus}
+    {time}
+    {responseHeaders}
+    {responseContentType}
+  />
 </main>
 
 <style>

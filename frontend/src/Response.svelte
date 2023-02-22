@@ -1,5 +1,5 @@
 <script>
-    import "carbon-components-svelte/css/white.css";
+    // import "carbon-components-svelte/css/white.css";
     // import JSONTree from "svelte-json-tree";
     import { JsonView } from "@zerodevx/svelte-json-view";
     import {
@@ -9,58 +9,61 @@
         Switch,
         TextArea,
     } from "carbon-components-svelte";
+    import { Tabs, Tab, TabContent } from "carbon-components-svelte";
+    import BodyOutput from "./responses/bodyOutput.svelte";
+    import HeadersOutput from "./responses/headersOutput.svelte";
 
     export let result = "";
     export let responseStatus = "";
-    export let responseContentType = "";
+    export let responseHeaders;
+    export let responseContentType;
     export let time;
 </script>
 
-<!-- {@debug result} -->
-<div class="response">
+<div class="response" style="height:300px;">
     {#if result}
-        <div>
-            Status:<span class="statusValue">{responseStatus}</span>
-            Time: <span class="statusValue">{time}</span>
+        <div class="status">
+            <span>Status:</span><span class="statusValue">{responseStatus}</span
+            >
+            <span>Time:</span> <span class="statusValue">{time}</span>
         </div>
-    {/if}
-    {#if responseContentType.startsWith("application/json")}
-        <!-- <div class="wrap" style="overflow: scroll;">
-            <JsonView calss="tree" json={JSON.parse(result)} />
-        </div> -->
-        <!-- <JsonView class="tree" json={JSON.parse(result)} /> -->
-        <!-- <JSONTree
-            class="tree"
-            value={JSON.parse(result)}
-            defaultExpandedLevel={3}
-        /> -->
-        <textarea bind:value={result} placeholder="返回结果" rows={12} />
-    {:else}
-        <textarea bind:value={result} placeholder="返回结果" rows={12} />
-    {/if}
+        <div style="position: relative;top: -20px;">
+            <Tabs autoWidth>
+                <Tab label="Body" />
+                <Tab label="Headers" />
+
+                <svelte:fragment slot="content">
+                    <TabContent style="padding:8px"
+                        ><BodyOutput bind:result /></TabContent
+                    >
+                    <TabContent
+                        ><HeadersOutput
+                            bind:headers={responseHeaders}
+                        /></TabContent
+                    >
+                </svelte:fragment>
+            </Tabs>
+        </div>
+    {:else}<div style="width:100%;">
+            <span>Response</span>
+        </div>{/if}
 </div>
 
 <style>
+    .status {
+        text-align: right;
+        position: relative;
+        top: 10px;
+        left: -10px;
+    }
     .response {
-        text-align: left;
-
         border: 1px solid silver;
-        margin-top: 5px;
         width: auto;
         height: auto;
         text-align: left;
-        padding: 8px;
-    }
-
-    textarea {
-        width: 100%;
-        font-size: 15px;
-        height: 100%;
     }
     .statusValue {
         color: green;
+        padding: 5px;
     }
-    /* .wrap {
-        overflow: scroll;
-    } */
 </style>

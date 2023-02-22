@@ -7,25 +7,27 @@
     export let files = [];
 </script>
 
-<FileUploader
-    kind="tertiary"
-    bind:this={fileUploader}
-    multiple
-    labelTitle="Upload File"
-    buttonLabel="add file "
-    status="complete"
-    bind:files
-/>
+<div style="overflow: auto;height:280px">
+    <FileUploader
+        kind="tertiary"
+        bind:this={fileUploader}
+        multiple
+        labelTitle="Upload File"
+        buttonLabel="add file "
+        status="complete"
+        bind:files
+    />
 
-<Button
-    kind="danger-tertiary"
-    size="small"
-    disabled={!files.length}
-    iconDescription="Clear file"
-    on:click={fileUploader.clearFiles}
-    on:click={() => (files = [])}
-    icon={TrashCan}
-/>
+    <Button
+        kind="danger-tertiary"
+        size="small"
+        disabled={!files.length}
+        iconDescription="Clear file"
+        on:click={fileUploader.clearFiles}
+        on:click={() => (files = [])}
+        icon={TrashCan}
+    />
+</div>
 
 <style>
 </style>

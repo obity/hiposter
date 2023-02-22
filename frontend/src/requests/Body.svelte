@@ -32,8 +32,11 @@
     <JsonInput bind:value />
 {:else if contentType == "application/binary"}
     <BinaryInput bind:files />
-{:else if contentType == "application/none"}{:else if contentType == "application/x-www-from-urlencoded"}
+{:else if contentType == "application/none"}
+    <div
+        style="overflow: auto;height:280px"
+    />{:else if contentType == "application/x-www-from-urlencoded"}
     <UrlencodedInput bind:value />
 {:else}
-    <OtherInput bind:value placeholder={contentType} />
+    <OtherInput bind:value />
 {/if}
