@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "carbon-icons-svelte": "^11.4.0",
+    "svelte-jsoneditor": "^0.14.9"
+  }
+}
