@@ -1,22 +1,17 @@
 <script>
-  import logo from "./assets/images/logo-universal.png";
+  // import logo from "./assets/images/logo-universal.png";
 
-  import { Greet, Run } from "../wailsjs/go/main/App.js";
+  import {  Run } from "../wailsjs/go/main/App.js";
   import Head from "./Head.svelte";
   import Request from "./Request.svelte";
   import Response from "./Response.svelte";
-  import { debug } from "svelte/internal";
-  import { UserRole } from "carbon-icons-svelte";
 
-  let resultText = "Please enter your name below 👇";
-  let name;
   let method;
   let url = "";
   let bodyContent;
-  let result;
+  let result="";
   let contentType = "application/none";
   let btnValue = "Send";
-  let disabled = false;
   let responseStatus;
   let time;
   let responseContentType;
@@ -26,24 +21,20 @@
   let params = [{ id: 0, key: "", value: "" }];
   let files;
   $: {
-    args = "";
+    let s = "";
     for (const v of params) {
       if (v.key != "") {
-        if (args == "") {
-          args += "?" + v.key + "=" + v.value;
+        if (s == "") {
+          s += "?" + v.key + "=" + v.value;
         } else {
-          args += "&" + v.key + "=" + v.value;
+          s += "&" + v.key + "=" + v.value;
         }
       }
     }
-    args = args;
+    args = s;
   }
   function updateArgs() {
     url = url.split("?")[0] + args;
-  }
-
-  function greet() {
-    Greet(name).then((result) => (resultText = result));
   }
 
   function run() {
@@ -51,13 +42,11 @@
       return;
     }
     btnValue = "Sending";
-    disabled = true;
     result = "";
     let start = new Date().getTime();
     Run(method, url, bodyContent, contentType, headers).then((res) => {
       let end = new Date().getTime();
       time = end - start + "ms";
-      disabled = false;
       btnValue = "Send";
       responseStatus = res.httpStatus;
       responseContentType = res.contentType;

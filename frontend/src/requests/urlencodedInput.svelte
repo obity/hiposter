@@ -4,7 +4,9 @@
     import RowInsert from "carbon-icons-svelte/lib/AddFilled.svelte";
     import RowDelete from "carbon-icons-svelte/lib/TrashCan.svelte";
     import { writable } from "svelte/store";
-    export let headers = [{ id: 0, key: "", value: "" }];
+    let headers = [{ id: 0, key: "", value: "" }];
+    export let urlencodedBody = "";
+   
 
     let index;
     const count = writable(1);
@@ -13,6 +15,15 @@
         // console.log(index);
     });
     $: newLine = { id: index, key: "", value: "" };
+    $:{
+        let arr = [];
+        for (const h of headers) {
+            if (h.key != "") {
+                arr.push(h.key +'='+ h.value);
+            }
+        }
+        urlencodedBody = arr.join("&");
+    }
     function addItem() {
         count.update((n) => n + 1);
         headers.push(newLine);
