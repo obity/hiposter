@@ -1,7 +1,6 @@
 <script>
-    // import "carbon-components-svelte/css/white.css";
-    // import JSONTree from "svelte-json-tree";
-    import { JsonView } from "@zerodevx/svelte-json-view";
+    import "carbon-components-svelte/css/white.css";
+    import { JSONEditor, Mode } from "svelte-jsoneditor";
     import {
         TextInput,
         Button,
@@ -16,11 +15,10 @@
         InlineNotification,
         ProgressBar,
     } from "carbon-components-svelte";
-    import { bind } from "svelte/internal";
     import BodyOutput from "./responses/bodyOutput.svelte";
     import HeadersOutput from "./responses/headersOutput.svelte";
 
-    export let result = "";
+    export let result;
     export let responseStatus = "";
     export let responseHeaders;
     export let responseContentType;
@@ -29,7 +27,15 @@
     export let isError = false;
     export let errMsg = "";
     let outputType = "raw";
-    let outputHeight = 260;
+    let outputHeight = 240;
+    let content = { json: {} };
+    $: {
+        if (result) {
+            content = {
+                json: JSON.parse(result),
+            };
+        }
+    }
     console.log(responseContentType);
 </script>
 
@@ -64,14 +70,18 @@
                         >
                         {#if outputType == "pretty"}
                             <div style="overflow: auto;height:{outputHeight}px">
-                                <JsonView
-                                    json={JSON.parse(result)}
-                                    depth={5}
-                                    style=""
+                                <JSONEditor
+                                    {content}
+                                    mainMenuBar={false}
+                                    navigationBar={false}
+                                    mode={Mode.text}
+                                    parser={JSON}
+                                    indentation={4}
+                                    statusBar={false}
                                 />
                             </div>
                         {:else}
-                            <BodyOutput bind:result {outputHeight} />
+                            <BodyOutput {result} {outputHeight} />
                         {/if}
 
                         <!-- {#if responseContentType.startsWith("application/json")}

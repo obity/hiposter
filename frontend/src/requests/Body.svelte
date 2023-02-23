@@ -33,7 +33,7 @@
     <BinaryInput bind:files />
 {:else if contentType == "application/none"}
     <div
-        style="overflow: auto;height:280px"
+        style="overflow: auto;height:260px"
     />{:else if contentType == "application/x-www-from-urlencoded"}
     <UrlencodedInput bind:urlencodedBody={value} />
 {:else}
