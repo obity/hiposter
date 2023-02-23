@@ -7,7 +7,14 @@
   "frontend:dev:watcher": "npm run dev",
   "frontend:dev:serverUrl": "auto",
   "author": {
-    "name": "lishenmiao",
+    "name": "wander",
     "email": "wander@ffactory.org"
+  },
+  "Info": {
+    "companyName": "ffactory.org",
+    "productName": "hiposter",
+    "productVersion": "0.0.6",
+    "copyright": "Copyright © 2023-present wander@ffactory.org , hiposter is under GPL-3.0 license",
+    "comments": "hiposter is a simple and efficient http API testing client tool. Based on Wails, Go and sveltejs."
   }
 }

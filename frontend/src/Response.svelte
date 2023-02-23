@@ -9,7 +9,14 @@
         Switch,
         TextArea,
     } from "carbon-components-svelte";
-    import { Tabs, Tab, TabContent } from "carbon-components-svelte";
+    import {
+        Tabs,
+        Tab,
+        TabContent,
+        InlineNotification,
+        ProgressBar,
+    } from "carbon-components-svelte";
+    import { bind } from "svelte/internal";
     import BodyOutput from "./responses/bodyOutput.svelte";
     import HeadersOutput from "./responses/headersOutput.svelte";
 
@@ -18,24 +25,61 @@
     export let responseHeaders;
     export let responseContentType;
     export let time;
+    export let isLoading = false;
+    export let isError = false;
+    export let errMsg = "";
+    let outputType = "raw";
+    let outputHeight = 260;
+    console.log(responseContentType);
 </script>
 
-<div class="response" style="height:300px;">
+<div class="response" style="height:{outputHeight + 110}px;">
     {#if result}
         <div class="status">
             <span>Status:</span><span class="statusValue">{responseStatus}</span
             >
             <span>Time:</span> <span class="statusValue">{time}</span>
         </div>
+
         <div style="position: relative;top: -20px;">
             <Tabs autoWidth>
                 <Tab label="Body" />
                 <Tab label="Headers" />
 
                 <svelte:fragment slot="content">
-                    <TabContent style="padding:8px"
-                        ><BodyOutput bind:result /></TabContent
-                    >
+                    <TabContent style="padding:8px">
+                        <Button
+                            on:click={() => (outputType = "raw")}
+                            kind="tertiary"
+                            size="small"
+                            style="font-size: small;width:10px;border-radius: 20px;text-align:center"
+                            >Raw</Button
+                        >
+                        <Button
+                            on:click={() => (outputType = "pretty")}
+                            kind="tertiary"
+                            size="small"
+                            style="font-size: small;width:10px; margin-bottom: 5px;border-radius: 20px;text-align:center"
+                            >Pretty</Button
+                        >
+                        {#if outputType == "pretty"}
+                            <div style="overflow: auto;height:{outputHeight}px">
+                                <JsonView
+                                    json={JSON.parse(result)}
+                                    depth={5}
+                                    style=""
+                                />
+                            </div>
+                        {:else}
+                            <BodyOutput bind:result {outputHeight} />
+                        {/if}
+
+                        <!-- {#if responseContentType.startsWith("application/json")}
+                            
+                        {:else} -->
+
+                        <!-- {/if} -->
+                    </TabContent>
                     <TabContent
                         ><HeadersOutput
                             bind:headers={responseHeaders}
@@ -44,10 +88,22 @@
                 </svelte:fragment>
             </Tabs>
         </div>
+    {:else if isLoading}
+        <ProgressBar size="sm" helperText="Loading..." />
     {:else}<div style="width:100%;">
             <span>Response</span>
-        </div>{/if}
+        </div>
+    {/if}
 </div>
+{#if isError}
+    <InlineNotification
+        lowContrast
+        kind="error"
+        title="Error:"
+        timeout={5000}
+        subtitle={errMsg}
+    />
+{/if}
 
 <style>
     .status {

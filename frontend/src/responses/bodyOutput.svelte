@@ -9,8 +9,14 @@
     } from "carbon-components-svelte";
 
     export let result = "";
+    export let outputHeight;
 </script>
 
 <div>
-    <TextArea class="text" bind:value={result} style="height:250px;" light />
+    <TextArea
+        class="text"
+        bind:value={result}
+        style="height:{outputHeight}px;"
+        light
+    />
 </div>

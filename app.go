@@ -58,7 +58,7 @@ func (a *App) Run(method string, url string, body string, contentType string, he
 	cli := http.Client{}
 	response, err := cli.Do(req)
 	if err != nil {
-		return result, fmt.Errorf("http Do failed: %v", err)
+		return result, fmt.Errorf("hiposter:																																																																																																																																				 %v", err)
 	}
 	defer response.Body.Close()
 
