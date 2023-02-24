@@ -1,6 +1,6 @@
 <script>
     import "carbon-components-svelte/css/white.css";
-    import { JSONEditor, Mode } from "svelte-jsoneditor";
+    // import { JSONEditor, Mode } from "svelte-jsoneditor";
     import {
         TextInput,
         Button,
@@ -17,6 +17,7 @@
     } from "carbon-components-svelte";
     import BodyOutput from "./responses/bodyOutput.svelte";
     import HeadersOutput from "./responses/headersOutput.svelte";
+    import JsonInput from "./requests/JsonInput.svelte";
 
     export let result;
     export let responseStatus = "";
@@ -27,16 +28,16 @@
     export let isError = false;
     export let errMsg = "";
     let outputType = "raw";
-    let outputHeight = 240;
-    let content = { json: {} };
-    $: {
-        if (result) {
-            content = {
-                json: JSON.parse(result),
-            };
-        }
-    }
-    console.log(responseContentType);
+    let outputHeight = 260;
+    // let content = { json: {} };
+    // $: {
+    //     if (result) {
+    //         content = {
+    //             json: JSON.parse(result),
+    //         };
+    //     }
+    // }
+    // console.log(responseContentType);
 </script>
 
 <div class="response" style="height:{outputHeight + 110}px;">
@@ -68,16 +69,14 @@
                             style="font-size: small;width:10px; margin-bottom: 5px;border-radius: 20px;text-align:center"
                             >Pretty</Button
                         >
-                        {#if outputType == "pretty"}
+                        {#if outputType == "pretty" && responseContentType.startsWith("application/json")}
                             <div style="overflow: auto;height:{outputHeight}px">
-                                <JSONEditor
-                                    {content}
-                                    mainMenuBar={false}
-                                    navigationBar={false}
-                                    mode={Mode.text}
-                                    parser={JSON}
-                                    indentation={4}
-                                    statusBar={false}
+                                <JsonInput
+                                    value={JSON.stringify(
+                                        JSON.parse(result),
+                                        null,
+                                        4
+                                    )}
                                 />
                             </div>
                         {:else}

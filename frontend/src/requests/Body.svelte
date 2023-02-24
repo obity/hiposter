@@ -28,7 +28,7 @@
     {/each}
 </RadioButtonGroup>
 {#if contentType == "application/json"}
-    <JsonInput bind:value />
+    <JsonInput bind:value height={260} />
 {:else if contentType == "application/binary"}
     <BinaryInput bind:files />
 {:else if contentType == "application/none"}

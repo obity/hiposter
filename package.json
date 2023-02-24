@@ -1,6 +1,9 @@
 {
   "dependencies": {
+    "@codemirror/lang-javascript": "^6.1.4",
+    "@codemirror/theme-one-dark": "^6.1.1",
     "carbon-icons-svelte": "^11.4.0",
+    "svelte-codemirror-editor": "^1.1.0",
     "svelte-jsoneditor": "^0.14.9"
   }
 }
