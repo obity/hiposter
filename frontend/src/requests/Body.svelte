@@ -18,19 +18,18 @@
     ];
     export let contentType = "application/none";
     export let value;
-    export let files;
 </script>
 
 <!-- {@debug contentType} -->
-<RadioButtonGroup bind:selected={contentType}>
+<RadioButtonGroup on:change={() => (value = "")} bind:selected={contentType}>
     {#each contentTypes as { k, v }}
         <RadioButton labelText={k} value={v} />
     {/each}
 </RadioButtonGroup>
 {#if contentType == "application/json"}
-    <JsonInput bind:value height={260} />
+    <JsonInput bind:value />
 {:else if contentType == "application/binary"}
-    <BinaryInput bind:files />
+    <BinaryInput bind:value />
 {:else if contentType == "application/none"}
     <div
         style="overflow: auto;height:260px"
