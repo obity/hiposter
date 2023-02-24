@@ -101,18 +101,18 @@
         <ProgressBar size="sm" helperText="Loading..." />
     {:else}<div style="width:100%;">
             <span>Response</span>
+            {#if isError}
+                <InlineNotification
+                    lowContrast
+                    kind="error"
+                    title="Error:"
+                    timeout={5000}
+                    subtitle={errMsg}
+                />
+            {/if}
         </div>
     {/if}
 </div>
-{#if isError}
-    <InlineNotification
-        lowContrast
-        kind="error"
-        title="Error:"
-        timeout={5000}
-        subtitle={errMsg}
-    />
-{/if}
 
 <style>
     .status {
