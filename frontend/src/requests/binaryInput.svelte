@@ -1,10 +1,17 @@
-<script>
+<script lang="ts">
     import "carbon-components-svelte/css/white.css";
     import { FileUploader, Button } from "carbon-components-svelte";
     import TrashCan from "carbon-icons-svelte/lib/TrashCan.svelte";
 
     let fileUploader;
-    export let files = [];
+    export let value;
+    let files = [];
+
+    $: {
+        if (files.length) {
+            console.log(files[0].name);
+        }
+    }
 </script>
 
 <div style="overflow: auto;height:280px">
@@ -19,9 +26,9 @@
     />
 
     <Button
+        disabled={!files.length}
         kind="danger-tertiary"
         size="small"
-        disabled={!files.length}
         iconDescription="Clear file"
         on:click={fileUploader.clearFiles}
         on:click={() => (files = [])}

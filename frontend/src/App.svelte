@@ -19,7 +19,6 @@
   let headers;
   let args = "";
   let params = [{ id: 0, key: "", value: "" }];
-  let files;
   let isLoading = false;
   let isError = false;
   let errMsg = "";
@@ -86,7 +85,6 @@
     bind:contentType
     bind:headers
     bind:params
-    bind:files
   />
   <Response
     bind:result
