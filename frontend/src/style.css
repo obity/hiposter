@@ -1,17 +1,19 @@
 html {
     /* background-color: rgba(27, 38, 54, 1); */
     text-align: center;
-    color: white;
+    /* color: white; */
     overflow: hidden;
+    background: transparent;
 
 }
 
 body {
     margin: 0;
-    color: white;
+    /* color: white; */
     font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
     "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
+    background: transparent;
    
 }
 
@@ -26,4 +28,5 @@ body {
 #app {
     height: 100vh;
     text-align: center;
+    background: transparent;
 }
