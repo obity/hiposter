@@ -4,7 +4,6 @@
     import TrashCan from "carbon-icons-svelte/lib/TrashCan.svelte";
 
     let fileUploader;
-    export let value;
     let files = [];
 
     $: {

@@ -70,6 +70,7 @@
         iconDescription="row insert"
         on:click={addItem}
         on:click
+        tooltipAlignment="start"
         icon={RowInsert}
     />
     <Button
