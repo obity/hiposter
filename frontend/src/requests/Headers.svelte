@@ -61,6 +61,7 @@
         on:click={addItem}
         on:click
         icon={RowInsert}
+        tooltipAlignment="start"
     />
     <Button
         kind="tertiary"
