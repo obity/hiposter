@@ -63,7 +63,7 @@ func main() {
 			WebviewIsTransparent: true,
 			WindowIsTranslucent:  false,
 			About: &mac.AboutInfo{
-				Title:   "hiposter v0.0.6",
+				Title:   "hiposter v0.0.8",
 				Message: "© 2023 wander@ffactory.org",
 				// Icon:    icon,
 			},
