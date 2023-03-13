@@ -14,7 +14,7 @@
     !define INFO_PRODUCTNAME "hiposter"
 !endif
 !ifndef INFO_PRODUCTVERSION
-    !define INFO_PRODUCTVERSION "0.0.6"
+    !define INFO_PRODUCTVERSION "0.0.8"
 !endif
 !ifndef INFO_COPYRIGHT
     !define INFO_COPYRIGHT "Copyright © 2023-present wander@ffactory.org , hiposter is under GPL-3.0 license"
