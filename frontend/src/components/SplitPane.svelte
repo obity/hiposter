@@ -141,7 +141,6 @@
 
 <style>
     .container {
-        border: 1px solid silver;
         height: 600px;
         width: 1024px;
         position: relative;
@@ -156,7 +155,6 @@
         width: 100%;
         height: 100%;
         overflow: auto;
-        border: 1px solid silver;
         overflow: hidden;
     }
 

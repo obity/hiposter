@@ -45,9 +45,8 @@
     .request {
         border: 1px solid silver;
         margin-top: 5px;
-        width: auto;
-        min-width: 200px;
-        min-height: 250px;
+        width: 100%;
+        height: 100%;
         text-align: left;
         padding: 8px;
         overflow: hidden;

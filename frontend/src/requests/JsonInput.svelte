@@ -17,7 +17,7 @@
         styles={{
             "&": {
                 width: "100%",
-                height: "400px",
+                min_height: "100%",
                 "font-size": "13px",
             },
         }}

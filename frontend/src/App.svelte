@@ -80,7 +80,7 @@
 
 <main style="margin-left: 20px; margin-right:20px;min-height:768px; min-width:1024px">
   <Head on:click={run} bind:theMethod={method} {btnValue} bind:url />
-  <div style="display:flex; height:768px; min-width:1024px;overflow: hidden;">
+  <div style="display:flex; height:600px; min-width:1024px;overflow: hidden;">
   <SplitPane pos={50} fixed={false} min={20} max={80}>
   
   <Request
