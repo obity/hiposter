@@ -16,7 +16,7 @@
     <TextArea
         class="text"
         bind:value={result}
-        style="height:{outputHeight}%;"
+        style="overflow-y: auto;height:{outputHeight}px; width:100%;"
         light
     />
 </div>

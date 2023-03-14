@@ -8,7 +8,7 @@
     bind:value
     placeholder="Please enter the request data here."
     light
-    style="border: 1px solid silver;overflow: auto;height:280px"
+    style="border: 1px solid silver;overflow: auto;min-height:400px; max-height:100%;"
 />
 
 <style>
