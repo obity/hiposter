@@ -36,7 +36,7 @@
     }
 </script>
 
-<div style="overflow: auto;height:280px">
+<div style="overflow: auto;height:100%">
     <div class="title">
         <div class="clos"><span>KEY</span></div>
         <div class="clos" style="border-left: 0.5px solid silver;">

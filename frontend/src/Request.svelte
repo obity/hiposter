@@ -24,7 +24,7 @@
         <Switch text={op} />
     {/each}
 </ContentSwitcher>
-<div class="request">
+<div class="request" >
     {#if selectOption == "Body"}<Body
             bind:value={bodyContent}
             bind:contentType
@@ -50,6 +50,7 @@
         min-height: 250px;
         text-align: left;
         padding: 8px;
+        overflow: hidden;
     }
     legend {
         margin-bottom: 5px;

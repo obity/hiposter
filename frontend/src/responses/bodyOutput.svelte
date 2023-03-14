@@ -16,7 +16,7 @@
     <TextArea
         class="text"
         bind:value={result}
-        style="height:{outputHeight}px;"
+        style="height:{outputHeight}%;"
         light
     />
 </div>

@@ -2,6 +2,7 @@
   // import logo from "./assets/images/logo-universal.png";
 
   import { Run } from "../wailsjs/go/main/App.js";
+    import SplitPane from "./components/SplitPane.svelte";
   import Head from "./Head.svelte";
   import Request from "./Request.svelte";
   import Response from "./Response.svelte";
@@ -77,9 +78,13 @@
   }
 </script>
 
-<main style="margin-left: 20px; margin-right:20px; min-width:400px">
+<main style="margin-left: 20px; margin-right:20px;min-height:768px; min-width:1024px">
   <Head on:click={run} bind:theMethod={method} {btnValue} bind:url />
+  <div style="display:flex; height:768px; min-width:1024px;overflow: hidden;">
+  <SplitPane pos={50} fixed={false} min={20} max={80}>
+  
   <Request
+  slot="a"
     on:click={updateArgs}
     bind:bodyContent
     bind:contentType
@@ -87,6 +92,7 @@
     bind:params
   />
   <Response
+  slot="b"
     bind:result
     {responseStatus}
     {time}
@@ -96,6 +102,8 @@
     {isError}
     {errMsg}
   />
+</SplitPane>
+</div>
 </main>
 
 <style>

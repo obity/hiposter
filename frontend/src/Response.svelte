@@ -28,7 +28,7 @@
     export let isError = false;
     export let errMsg = "";
     let outputType = "raw";
-    let outputHeight = 260;
+    let outputHeight =100;
     // let content = { json: {} };
     // $: {
     //     if (result) {
@@ -40,7 +40,7 @@
     // console.log(responseContentType);
 </script>
 
-<div class="response" style="height:{outputHeight + 110}px;">
+<div class="response" style="height:{outputHeight}%;">
     {#if result}
         <div class="status">
             <span>Status:</span><span class="statusValue">{responseStatus}</span
@@ -70,7 +70,7 @@
                             >Pretty</Button
                         >
                         {#if outputType == "pretty" && responseContentType.startsWith("application/json")}
-                            <div style="overflow: auto;height:{outputHeight}px">
+                            <div style="overflow: auto;height:{outputHeight}%">
                                 <JsonInput
                                     value={JSON.stringify(
                                         JSON.parse(result),
