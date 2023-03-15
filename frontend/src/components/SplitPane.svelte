@@ -173,7 +173,7 @@
     .divider::after {
         content: "";
         position: absolute;
-        background-color:white;
+        background-color:silver;
     }
 
     .divider:hover,.divider:active{
