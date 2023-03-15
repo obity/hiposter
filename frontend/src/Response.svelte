@@ -1,14 +1,7 @@
 <script>
     import "carbon-components-svelte/css/white.css";
-    // import { JSONEditor, Mode } from "svelte-jsoneditor";
     import {
-        TextInput,
         Button,
-        ContentSwitcher,
-        Switch,
-        TextArea,
-    } from "carbon-components-svelte";
-    import {
         Tabs,
         Tab,
         TabContent,
@@ -17,7 +10,7 @@
     } from "carbon-components-svelte";
     import BodyOutput from "./responses/bodyOutput.svelte";
     import HeadersOutput from "./responses/headersOutput.svelte";
-    import JsonInput from "./requests/JsonInput.svelte";
+    import JsonEditor from "./components/JsonEditor.svelte";
 
     export let result;
     export let responseStatus = "";
@@ -28,19 +21,9 @@
     export let isError = false;
     export let errMsg = "";
     let outputType = "raw";
-    let outputHeight =450;
-    // let content = { json: {} };
-    // $: {
-    //     if (result) {
-    //         content = {
-    //             json: JSON.parse(result),
-    //         };
-    //     }
-    // }
-    // console.log(responseContentType);
 </script>
 
-<div class="response" style="height:100%">
+<div class="response" style="position:absolute; width: 100%;height: 100%;">
     {#if result}
         <div class="status">
             <span>Status:</span><span class="statusValue">{responseStatus}</span
@@ -48,7 +31,7 @@
             <span>Time:</span> <span class="statusValue">{time}</span>
         </div>
 
-        <div style="position: relative;top: -20px;">
+        <div style="position:relative;top: -15px;height:100%;width:99.35%">
             <Tabs autoWidth>
                 <Tab label="Body" />
                 <Tab label="Headers" />
@@ -69,25 +52,19 @@
                             style="font-size: small;width:10px; margin-bottom: 5px;border-radius: 20px;text-align:center"
                             >Pretty</Button
                         >
-                        {#if outputType == "pretty" && responseContentType.startsWith("application/json")}
-                            <div style="overflow: auto;height:{outputHeight}px;">
-                                <JsonInput
+                        <div>
+                            {#if outputType == "pretty" && responseContentType.startsWith("application/json")}
+                                <JsonEditor
                                     value={JSON.stringify(
                                         JSON.parse(result),
                                         null,
                                         4
                                     )}
                                 />
-                            </div>
-                        {:else}
-                            <BodyOutput {result} {outputHeight} />
-                        {/if}
-
-                        <!-- {#if responseContentType.startsWith("application/json")}
-                            
-                        {:else} -->
-
-                        <!-- {/if} -->
+                            {:else}
+                                <BodyOutput {result} />
+                            {/if}
+                        </div>
                     </TabContent>
                     <TabContent
                         ><HeadersOutput
@@ -124,8 +101,6 @@
     .response {
         border: 1px solid silver;
         text-align: left;
-        width: 100%;
-        
     }
     .statusValue {
         color: green;
