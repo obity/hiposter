@@ -17,9 +17,7 @@
     $: min = 100 * (buffer / size);
     $: max = 100 - min;
     $: pos = yootils.clamp(pos, min, max);
-    $: {
-        console.log(min, max, pos);
-    }
+
     const refs = {};
 
     let dragging = false;
@@ -141,8 +139,6 @@
 
 <style>
     .container {
-        height: 600px;
-        width: 1024px;
         position: relative;
         width: 100%;
         height: 100%;
@@ -154,7 +150,6 @@
         float: left;
         width: 100%;
         height: 100%;
-        overflow: auto;
         overflow: hidden;
     }
 
