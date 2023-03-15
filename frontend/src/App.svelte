@@ -87,7 +87,7 @@
 >
   <Head on:click={run} bind:theMethod={method} {btnValue} bind:url />
   <ContentSwitcher
-    style="min-width:300px; max-width:600px; font-size: 15px;height:28px;"
+    style="min-width:300px; max-width:600px; font-size: 15px;height:35px;"
     size="sm"
     bind:selectedIndex={selectIndex}
   >
