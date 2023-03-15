@@ -47,7 +47,7 @@ func (a *App) Run(method string, url string, body string, contentType string, he
 		return result, fmt.Errorf("NewRequest failed: %v", err)
 	}
 	req.Header.Set("Content-Type", contentType)
-	req.Header.Set("User-Agent", "hiposter/0.0.4")
+	req.Header.Set("User-Agent", "hiposter/0.0.9")
 	req.Header.Set("Accept", "*/*")
 	req.Header.Set("Connection", "keep-alive")
 	for _, h := range headers {
