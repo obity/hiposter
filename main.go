@@ -22,7 +22,7 @@ func main() {
 		Title:            "hiposter",
 		Width:            1024,
 		Height:           768,
-		WindowStartState: options.Maximised,
+		WindowStartState: options.Normal,
 		AssetServer: &assetserver.Options{
 			Assets: assets,
 		},
