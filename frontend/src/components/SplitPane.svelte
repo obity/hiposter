@@ -126,7 +126,7 @@
     {#if !fixed}
         <div
             class="vertical divider"
-            style="{side}: calc({pos}% - 8px)"
+            style="{side}: calc({pos}% - 2px);"
             use:drag={setPos}
             use:touchDrag={setTouchPos}
         />
@@ -173,36 +173,39 @@
     .divider::after {
         content: "";
         position: absolute;
-        /* background-color: #eee; */
-        background-color: var(--sk-back-3);
+        background-color:white;
     }
 
+    .divider:hover,.divider:active{
+        background-color: #4c9fe9;
+    }
+    
     .horizontal {
-        padding: 0 8px;
+        padding: 0 2px;
         width: 0;
         height: 100%;
         cursor: ew-resize;
     }
 
     .horizontal::after {
-        left: 8px;
+        left: 2px;
         top: 0;
         width: 1px;
         height: 100%;
     }
 
     .vertical {
-        padding: 8px 0;
+        padding: 2px 0;
         width: 100%;
         height: 0;
         cursor: ns-resize;
     }
 
     .vertical::after {
-        top: 8px;
+        top: 2px;
         left: 0;
         width: 100%;
-        height: 1px;
+        height: 2px;
     }
 
     .left,
