@@ -1,8 +1,9 @@
 <script>
   // import logo from "./assets/images/logo-universal.png";
-
+  import "carbon-components-svelte/css/white.css";
+  import { ContentSwitcher, Switch } from "carbon-components-svelte";
   import { Run } from "../wailsjs/go/main/App.js";
-    import SplitPane from "./components/SplitPane.svelte";
+  import SplitPane from "./components/SplitPane.svelte";
   import Head from "./Head.svelte";
   import Request from "./Request.svelte";
   import Response from "./Response.svelte";
@@ -76,34 +77,47 @@
         errMsg = e.toString();
       });
   }
+
+  let options = ["Params", "Headers", "Body"];
+  let selectIndex = 0;
 </script>
 
-<main style="margin-left: 20px; margin-right:20px;min-height:768px; min-width:1024px">
+<main
+  style="position: absolute; margin-left: 1%; margin-right:20px;height:98%; min-width:98%"
+>
   <Head on:click={run} bind:theMethod={method} {btnValue} bind:url />
-  <div style="display:flex; height:600px; min-width:1024px;overflow: hidden;">
-  <SplitPane pos={50} fixed={false} min={20} max={80}>
-  
-  <Request
-  slot="a"
-    on:click={updateArgs}
-    bind:bodyContent
-    bind:contentType
-    bind:headers
-    bind:params
-  />
-  <Response
-  slot="b"
-    bind:result
-    {responseStatus}
-    {time}
-    {responseHeaders}
-    {responseContentType}
-    {isLoading}
-    {isError}
-    {errMsg}
-  />
-</SplitPane>
-</div>
+  <ContentSwitcher
+    style="min-width:300px; max-width:600px; font-size: 15px;height:28px;"
+    size="sm"
+    bind:selectedIndex={selectIndex}
+  >
+    {#each options as op}
+      <Switch text={op} />
+    {/each}
+  </ContentSwitcher>
+
+  <SplitPane pos={50} fixed={false} min={40} max={60} buffer={100}>
+    <Request
+      slot="a"
+      on:click={updateArgs}
+      bind:bodyContent
+      bind:contentType
+      bind:headers
+      bind:params
+      bind:selectIndex
+    />
+    <Response
+      slot="b"
+      bind:result
+      {responseStatus}
+      {time}
+      {responseHeaders}
+      {responseContentType}
+      {isLoading}
+      {isError}
+      {errMsg}
+    />
+  </SplitPane>
 </main>
 
 <style>
