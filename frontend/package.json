@@ -9,7 +9,10 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@codemirror/lang-html": "^6.4.2",
+    "@codemirror/lang-javascript": "^6.1.4",
     "@codemirror/lang-json": "^6.0.1",
+    "@codemirror/lang-xml": "^6.0.2",
     "@sveltejs/vite-plugin-svelte": "^1.0.1",
     "carbon-components-svelte": "^0.72.3",
     "carbon-icons-svelte": "^11.4.0",
