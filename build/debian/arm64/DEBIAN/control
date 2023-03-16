@@ -1,0 +1,14 @@
+Package: hiposter 
+Version: 0.0.9
+License: GPL-3.0
+Vendor: wander <wander@ffactory.org>
+Architecture: arm64
+Maintainer: wander <wander@ffactory.org>
+Installed-Size: 8328 
+Pre-Depends: 
+Depends: libwebkit2gtk-4.0-37
+Section: default
+Priority: extra
+Homepage: https://github.com/obity/hiposter
+Description: 
+   hiposter is a simple and efficient http API testing client tool. Based on Wails, Go and sveltejs.

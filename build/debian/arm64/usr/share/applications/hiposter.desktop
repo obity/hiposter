@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=hiposter
+Exec="/usr/bin/hiposter" %U
+Terminal=false
+Type=Application
+Icon=/usr/share/icons/hiposter.png
+StartupWMClass=hiposter
+Comment= hiposter is a simple and efficient http API testing client tool. Based on Wails, Go and sveltejs.
+Categories=Application;Development;Network
