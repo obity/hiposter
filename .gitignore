@@ -22,3 +22,4 @@ frontend/dist%
 .DS_Store
 build/pack/macos
 macos/Applications
+build/windows/installer/wails_tools.nsh
