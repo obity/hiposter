@@ -9,11 +9,9 @@ then
  help
 else
 cd ../../
-echo "cd $PWD"
 wails build -clean -platform darwin/arm64
-
+echo "cd $PWD"
 cd build/pack/
-echo $PWD
 TempDir="macos"
 AppName="hiposter"
 Version=$1

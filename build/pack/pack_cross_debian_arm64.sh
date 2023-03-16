@@ -10,14 +10,14 @@ then
 else
 cd ../../
 echo "cd $PWD"
-wails build -clean
+wails build -clean  -platform linux/arm64
 
 cd build/pack/
 echo $PWD
 TempDir="debian"
 AppName="hiposter"
 Version=$1
-Machine=$(uname -r|cut -d '-' -f3)
+Machine="arm64"
 rm -rf $TempDir
 mkdir $TempDir
 cp -r ../debian/arm64/* ./${TempDir} 

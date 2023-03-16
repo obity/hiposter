@@ -4,6 +4,9 @@
 *.dll
 *.so
 *.dylib
+*.dmg
+*.deb
+*.md5
 
 # Test binary, built with `go test -c`
 *.test
@@ -17,3 +20,4 @@ frontend/dist%
 # Dependency directories (remove the comment below to include it)
 # vendor/
 .DS_Store
+build/pack/macos

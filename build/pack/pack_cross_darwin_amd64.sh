@@ -13,7 +13,6 @@ echo "cd $PWD"
 wails build -clean -platform darwin/amd64
 
 cd build/pack/
-echo $PWD
 TempDir="macos"
 AppName="hiposter"
 Version=$1

@@ -9,11 +9,9 @@ then
  help
 else
 cd ../../
-echo "cd $PWD"
 wails build -clean
-
+echo "cd $PWD"
 cd build/pack/
-echo $PWD
 TempDir="macos"
 AppName="hiposter"
 Version=$1
@@ -23,4 +21,5 @@ mkdir $TempDir
 cp -r ../bin/${AppName}.app ./${TempDir} 
 ln -sf /Applications macos/Applications
 hdiutil create ./${AppName}_macos_${Machine}_${Version}.dmg -volname "$AppName" -fs HFS+ -srcfolder $TempDir -ov -format UDZO 
+md5 ${AppName}_macos_${Machine}_${Version}.dmg > ${AppName}_macos_${Machine}_${Version}.dmg.md5
 fi

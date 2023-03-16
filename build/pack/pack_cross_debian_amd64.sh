@@ -10,17 +10,17 @@ then
 else
 cd ../../
 echo "cd $PWD"
-wails build -clean
+wails build -clean  -platform linux/amd64
 
 cd build/pack/
 echo $PWD
 TempDir="debian"
 AppName="hiposter"
 Version=$1
-Machine=$(uname -r|cut -d '-' -f3)
+Machine="amd64"
 rm -rf $TempDir
 mkdir $TempDir
-cp -r ../debian/arm64/* ./${TempDir} 
+cp -r ../debian/amd64/* ./${TempDir} 
 mkdir -p ${TempDir}/usr/bin
 cp ../bin/${AppName} ${TempDir}/usr/bin 
 dpkg -b ${TempDir} ${AppName}_linux_${Machine}_${Version}.deb && \
