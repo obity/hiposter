@@ -16,10 +16,11 @@ TempDir="macos"
 AppName="hiposter"
 Version=$1
 Machine=$(uname -m)
+OutFile=${AppName}_macos_${Machine}_${Version}.dmg
 rm -rf $TempDir
 mkdir $TempDir
 cp -r ../bin/${AppName}.app ./${TempDir} 
 ln -sf /Applications macos/Applications
-hdiutil create ./${AppName}_macos_${Machine}_${Version}.dmg -volname "$AppName" -fs HFS+ -srcfolder $TempDir -ov -format UDZO 
-md5 ${AppName}_macos_${Machine}_${Version}.dmg > ${AppName}_macos_${Machine}_${Version}.dmg.md5
+hdiutil create ./$OutFile -volname "$AppName" -fs HFS+ -srcfolder $TempDir -ov -format UDZO 
+md5 $OutFile> $OutFile.md5
 fi

@@ -16,9 +16,11 @@ TempDir="windows10"
 AppName="hiposter"
 Version=$1
 Machine="amd64"
+OutFile=${TempDir}/${AppName}_windows10+_${Machine}_${Version}.exe
 rm -rf $TempDir
 mkdir $TempDir
 cp -r ../bin/${AppName}*installer.exe ./${TempDir} 
-mv ./${TempDir}/*installer.exe ${TempDir}/${AppName}_windows10+_${Machine}_${Version}.exe 
-md5 ${TempDir}/${AppName}_windows10+_${Machine}_${Version}.exe > ${TempDir}/${AppName}_windows10+_${Machine}_${Version}.exe.md5
+mv ./${TempDir}/*installer.exe $OutFile 
+echo "created: $PWD/$OutFile"
+md5 $OutFile > $OutFile.md5
 fi

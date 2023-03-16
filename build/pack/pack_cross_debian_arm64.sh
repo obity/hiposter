@@ -18,12 +18,13 @@ TempDir="debian"
 AppName="hiposter"
 Version=$1
 Machine="arm64"
+OutFile=${AppName}_linux_${Machine}_${Version}.deb
 rm -rf $TempDir
 mkdir $TempDir
 cp -r ../debian/arm64/* ./${TempDir} 
 mkdir -p ${TempDir}/usr/bin
 cp ../bin/${AppName} ${TempDir}/usr/bin 
-dpkg -b ${TempDir} ${AppName}_linux_${Machine}_${Version}.deb && \
-	echo "created: $PWD/${AppName}_linux_${Machine}_${Version}.deb"
-md5sum ${AppName}_linux_${Machine}_${Version}.deb > ${AppName}_linux_${Machine}_${Version}.deb.md5
+dpkg -b ${TempDir} $OutFile && \
+	echo "created: $PWD/$OutFile"
+md5sum $OutFile > $OutFile.md5
 fi
