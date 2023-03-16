@@ -21,3 +21,4 @@ frontend/dist%
 # vendor/
 .DS_Store
 build/pack/macos
+macos/Applications
