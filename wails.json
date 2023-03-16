@@ -13,7 +13,7 @@
   "Info": {
     "companyName": "ffactory.org",
     "productName": "hiposter",
-    "productVersion": "0.0.8",
+    "productVersion": "0.0.9",
     "copyright": "Copyright © 2023-present wander@ffactory.org , hiposter is under GPL-3.0 license",
     "comments": "hiposter is a simple and efficient http API testing client tool. Based on Wails, Go and sveltejs."
   }
