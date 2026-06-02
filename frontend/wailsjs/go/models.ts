@@ -21,6 +21,7 @@ export namespace main {
 	    errorContent: string;
 	    contentType: string;
 	    headers: Header[];
+	    size: number;
 	
 	    static createFrom(source: any = {}) {
 	        return new Result(source);
@@ -34,13 +35,14 @@ export namespace main {
 	        this.errorContent = source["errorContent"];
 	        this.contentType = source["contentType"];
 	        this.headers = this.convertValues(source["headers"], Header);
+	        this.size = source["size"];
 	    }
 	
 		convertValues(a: any, classs: any, asMap: boolean = false): any {
 		    if (!a) {
 		        return a;
 		    }
-		    if (a.slice) {
+		    if (a.slice && a.map) {
 		        return (a as any[]).map(elem => this.convertValues(elem, classs));
 		    } else if ("object" === typeof a) {
 		        if (asMap) {

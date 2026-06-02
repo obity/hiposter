@@ -33,7 +33,9 @@ type Result struct {
 	ErrorContent string   `json:"errorContent"`
 	ContentType  string   `json:"contentType"`
 	Headers      []Header `json:"headers"`
+	Size         int64    `json:"size"`
 }
+
 type Header struct {
 	Key   string `json:"key"`
 	Value string `json:"value"`
@@ -58,7 +60,7 @@ func (a *App) Run(method string, url string, body string, contentType string, he
 	cli := http.Client{}
 	response, err := cli.Do(req)
 	if err != nil {
-		return result, fmt.Errorf("hiposter:																																																																																																																																				 %v", err)
+		return result, fmt.Errorf("hiposter error: %v", err)
 	}
 	defer response.Body.Close()
 
@@ -71,8 +73,8 @@ func (a *App) Run(method string, url string, body string, contentType string, he
 		return result, fmt.Errorf("read body error: %v", err)
 	}
 	result.BodyContent = string(buf)
+	result.Size = int64(len(buf))
 	return result, nil
-
 }
 
 func parseResponseHeaders(data *http.Header) []Header {

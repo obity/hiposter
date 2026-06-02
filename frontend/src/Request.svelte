@@ -5,43 +5,52 @@
     import Body from "./requests/Body.svelte";
     import Headers from "./requests/Headers.svelte";
     import Params from "./requests/Params.svelte";
+    import Auth from "./requests/Auth.svelte";
 
-    let options = ["Params", "Headers", "Body"];
+    let options = ["Params", "Headers", "Body", "Auth"];
     export let selectIndex = 0;
     $: selectOption = options[selectIndex];
     export let bodyContent;
     export let contentType;
     export let headers;
     export let params;
+    export let authData;
 </script>
 
-<div class="request">
+<div class="request-container">
     {#if selectOption == "Body"}
         <Body bind:value={bodyContent} bind:contentType />
     {/if}
 
     {#if selectOption == "Headers"}
-        <legend>Headers</legend>
+        <div class="section-label">Headers</div>
         <Headers bind:headers />
     {/if}
     {#if selectOption == "Params"}
-        <legend>Query Params</legend>
+        <div class="section-label">Query Params</div>
         <Params on:click bind:params />
+    {/if}
+    {#if selectOption == "Auth"}
+        <div class="section-label">Authentication</div>
+        <Auth bind:authData />
     {/if}
 </div>
 
 <style>
-    .request {
-        position: absolute;
-        border: 1px solid silver;
-        margin-top: 5px;
-        width: 100%;
+    .request-container {
         height: 100%;
+        width: 100%;
         text-align: left;
-        padding: 8px;
-        overflow: hidden;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
     }
-    legend {
-        margin-bottom: 5px;
+    .section-label {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--hm-text-primary);
+        margin-bottom: 16px;
+        padding-left: 4px;
     }
 </style>

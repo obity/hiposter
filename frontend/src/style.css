@@ -1,32 +1,115 @@
-html {
-    /* background-color: rgba(27, 38, 54, 1); */
-    text-align: center;
-    /* color: white; */
-    overflow: hidden;
-    background: transparent;
-
+:root {
+    /* 设计师精选：现代科技感色板 */
+    --brand-primary: #6366f1;   /* 靛蓝色 */
+    --brand-secondary: #8b5cf6; /* 紫色 */
+    --brand-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    
+    /* 背景体系：层级化灰度 */
+    --ui-bg-base: #f8fafc;      /* 页面底色 */
+    --ui-bg-card: #ffffff;      /* 顶层卡片 */
+    --ui-bg-sub: rgba(241, 245, 249, 0.6); /* 次级背景 */
+    
+    /* 语义化色彩 */
+    --ui-success: #10b981;
+    --ui-warning: #f59e0b;
+    --ui-error: #ef4444;
+    --ui-info: #3b82f6;
+    
+    /* 文字体系 */
+    --ui-text-main: #0f172a;
+    --ui-text-desc: #475569;
+    --ui-text-mute: #94a3b8;
+    
+    /* 细节规范 */
+    --ui-radius-xl: 24px;
+    --ui-radius-lg: 16px;
+    --ui-radius-md: 12px;
+    --ui-radius-sm: 8px;
+    
+    /* 极细腻阴影：Layered Shadows */
+    --ui-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --ui-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    --ui-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --ui-shadow-float: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
-body {
+html, body {
     margin: 0;
-    /* color: white; */
-    font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-    "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-    background: transparent;
-   
-}
-
-@font-face {
-    font-family: "Nunito";
-    font-style: normal;
-    font-weight: 400;
-    src: local(""),
-    url("assets/fonts/nunito-v16-latin-regular.woff2") format("woff2");
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--ui-bg-base);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--ui-text-main);
+    -webkit-font-smoothing: antialiased;
 }
 
 #app {
-    height: 100vh;
-    text-align: center;
+    height: 100%;
+}
+
+/* 全局滚动条美化 */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
     background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: #e2e8f0;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #cbd5e1;
+}
+
+/* Carbon 组件深度定制 */
+:global(.bx--content-switcher) {
+    background-color: var(--ui-bg-sub) !important;
+    border-radius: var(--ui-radius-md) !important;
+    padding: 4px !important;
+    border: 1px solid rgba(0,0,0,0.02) !important;
+}
+
+:global(.bx--content-switcher-btn) {
+    border-radius: var(--ui-radius-sm) !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+:global(.bx--content-switcher-btn--selected) {
+    background-color: var(--ui-bg-card) !important;
+    color: var(--brand-primary) !important;
+    box-shadow: var(--ui-shadow-sm) !important;
+}
+
+:global(.bx--btn--primary) {
+    background: var(--brand-gradient) !important;
+    border: none !important;
+    border-radius: var(--ui-radius-lg) !important;
+    box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.39) !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+:global(.bx--btn--primary:hover) {
+    transform: translateY(-1px) !important;
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45) !important;
+}
+
+:global(.bx--btn--primary:active) {
+    transform: translateY(0) !important;
+}
+
+/* 动效定义 */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
 }

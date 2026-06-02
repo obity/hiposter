@@ -48,6 +48,10 @@ export function EventsOff(eventName, ...additionalEventNames) {
     return window.runtime.EventsOff(eventName, ...additionalEventNames);
 }
 
+export function EventsOffAll() {
+  return window.runtime.EventsOffAll();
+}
+
 export function EventsOnce(eventName, callback) {
     return EventsOnMultiple(eventName, callback, 1);
 }
@@ -199,4 +203,96 @@ export function ClipboardGetText() {
 
 export function ClipboardSetText(text) {
     return window.runtime.ClipboardSetText(text);
+}
+
+/**
+ * Callback for OnFileDrop returns a slice of file path strings when a drop is finished.
+ *
+ * @export
+ * @callback OnFileDropCallback
+ * @param {number} x - x coordinate of the drop
+ * @param {number} y - y coordinate of the drop
+ * @param {string[]} paths - A list of file paths.
+ */
+
+/**
+ * OnFileDrop listens to drag and drop events and calls the callback with the coordinates of the drop and an array of path strings.
+ *
+ * @export
+ * @param {OnFileDropCallback} callback - Callback for OnFileDrop returns a slice of file path strings when a drop is finished.
+ * @param {boolean} [useDropTarget=true] - Only call the callback when the drop finished on an element that has the drop target style. (--wails-drop-target)
+ */
+export function OnFileDrop(callback, useDropTarget) {
+    return window.runtime.OnFileDrop(callback, useDropTarget);
+}
+
+/**
+ * OnFileDropOff removes the drag and drop listeners and handlers.
+ */
+export function OnFileDropOff() {
+    return window.runtime.OnFileDropOff();
+}
+
+export function CanResolveFilePaths() {
+    return window.runtime.CanResolveFilePaths();
+}
+
+export function ResolveFilePaths(files) {
+    return window.runtime.ResolveFilePaths(files);
+}
+
+export function InitializeNotifications() {
+    return window.runtime.InitializeNotifications();
+}
+
+export function CleanupNotifications() {
+    return window.runtime.CleanupNotifications();
+}
+
+export function IsNotificationAvailable() {
+    return window.runtime.IsNotificationAvailable();
+}
+
+export function RequestNotificationAuthorization() {
+    return window.runtime.RequestNotificationAuthorization();
+}
+
+export function CheckNotificationAuthorization() {
+    return window.runtime.CheckNotificationAuthorization();
+}
+
+export function SendNotification(options) {
+    return window.runtime.SendNotification(options);
+}
+
+export function SendNotificationWithActions(options) {
+    return window.runtime.SendNotificationWithActions(options);
+}
+
+export function RegisterNotificationCategory(category) {
+    return window.runtime.RegisterNotificationCategory(category);
+}
+
+export function RemoveNotificationCategory(categoryId) {
+    return window.runtime.RemoveNotificationCategory(categoryId);
+}
+
+export function RemoveAllPendingNotifications() {
+    return window.runtime.RemoveAllPendingNotifications();
+}
+
+export function RemovePendingNotification(identifier) {
+    return window.runtime.RemovePendingNotification(identifier);
+}
+
+export function RemoveAllDeliveredNotifications() {
+    return window.runtime.RemoveAllDeliveredNotifications();
+}
+
+export function RemoveDeliveredNotification(identifier) {
+    return window.runtime.RemoveDeliveredNotification(identifier);
+}
+
+export function RemoveNotification(identifier) {
+    return window.runtime.RemoveNotification(identifier);
 }
