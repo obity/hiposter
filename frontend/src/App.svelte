@@ -103,6 +103,12 @@
     tabs = [...tabs]; // 触发 Svelte 更新
   }
 
+  function deleteHistoryItem(event) {
+    const index = event.detail;
+    history = history.filter((_, i) => i !== index);
+    localStorage.setItem("hiposter_history", JSON.stringify(history));
+  }
+
   function saveHistory(item) {
     history = [item, ...history.filter(h => h.url !== item.url || h.method !== item.method)].slice(0, 50);
     localStorage.setItem("hiposter_history", JSON.stringify(history));
@@ -185,7 +191,7 @@
   </script>
 
 <div class="app-container">
-  <Sidebar {history} on:select={selectHistory} on:clear={() => {history = []; localStorage.removeItem("hiposter_history");}} />
+  <Sidebar {history} on:select={selectHistory} on:clear={() => {history = []; localStorage.removeItem("hiposter_history");}} on:deleteItem={deleteHistoryItem} />
   
   <main class="main-content">
     <div class="header-region">

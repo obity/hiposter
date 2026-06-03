@@ -3,6 +3,7 @@
     import { Button, ListBox, ListBoxField, ListBoxMenu, ListBoxMenuItem } from "carbon-components-svelte";
     import HistoryIcon from "carbon-icons-svelte/lib/Time.svelte";
     import TrashIcon from "carbon-icons-svelte/lib/TrashCan.svelte";
+    import CloseIcon from "carbon-icons-svelte/lib/Close.svelte";
 
     export let history = [];
     const dispatch = createEventDispatcher();
@@ -13,6 +14,11 @@
 
     function clearHistory() {
         dispatch("clear");
+    }
+
+    function deleteHistoryItem(index, event) {
+        event.stopPropagation(); // 防止触发选中事件
+        dispatch("deleteItem", index);
     }
 
     function getMethodColor(method) {
@@ -55,6 +61,9 @@
                             <span class="history-method" style="color: {getMethodColor(item.method)}">{item.method}</span>
                         </div>
                         <div class="url">{item.url}</div>
+                    </div>
+                    <div class="item-delete-btn" on:click={(e) => deleteHistoryItem(i, e)} title="Delete">
+                        <CloseIcon size={16} />
                     </div>
                 </div>
             </div>
@@ -173,5 +182,24 @@
     .empty-state p {
         font-size: 14px;
         font-weight: 600;
+    }
+    .item-delete-btn {
+        opacity: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        border-radius: 6px;
+        color: var(--ui-text-mute);
+        transition: all 0.2s ease;
+        flex-shrink: 0;
+    }
+    .history-item:hover .item-delete-btn {
+        opacity: 1;
+    }
+    .item-delete-btn:hover {
+        background-color: #FF4C5120;
+        color: #FF4C51;
     }
 </style>
