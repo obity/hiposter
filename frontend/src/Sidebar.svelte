@@ -17,14 +17,17 @@
 
     function getMethodColor(method) {
         const colors = {
-            'GET': 'var(--hm-success)',
-            'POST': 'var(--hm-warning)',
-            'PUT': 'var(--hm-blue)',
-            'PATCH': '#8B5CF6',
-            'DELETE': 'var(--hm-error)',
-            'HEAD': 'var(--hm-text-secondary)'
+            'GET': 'var(--ui-success)',
+            'POST': 'var(--ui-warning)',
+            'PUT': 'var(--ui-info)',
+            'PATCH': 'var(--brand-secondary)',
+            'DELETE': 'var(--ui-error)',
+            'HEAD': 'var(--ui-text-mute)',
+            'OPTIONS': '#0ea5e9',
+            'TRACE': '#14b8a6',
+            'CONNECT': '#f43f5e'
         };
-        return colors[method] || 'var(--hm-text-primary)';
+        return colors[method] || 'var(--ui-text-main)';
     }
 </script>
 
@@ -46,10 +49,10 @@
         {#each history as item, i}
             <div class="history-item-container" style="animation: slideInRight {0.2 + i * 0.05}s ease forwards;">
                 <div class="history-item" on:click={() => selectHistory(item)}>
-                    <div class="method-bar" style="background: var(--ui-{item.method.toLowerCase() === 'get' ? 'success' : (item.method.toLowerCase() === 'post' ? 'warning' : 'info')})"></div>
+                    <div class="method-bar" style="background: {getMethodColor(item.method)}"></div>
                     <div class="history-content">
                         <div class="history-meta">
-                            <span class="history-method" style="color: var(--ui-{item.method.toLowerCase() === 'get' ? 'success' : (item.method.toLowerCase() === 'post' ? 'warning' : 'info')})">{item.method}</span>
+                            <span class="history-method" style="color: {getMethodColor(item.method)}">{item.method}</span>
                         </div>
                         <div class="url">{item.url}</div>
                     </div>

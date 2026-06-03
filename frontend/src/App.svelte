@@ -108,6 +108,21 @@
     localStorage.setItem("hiposter_history", JSON.stringify(history));
   }
 
+  function getMethodColor(method) {
+      const colors = {
+          'GET': 'var(--ui-success)',
+          'POST': 'var(--ui-warning)',
+          'PUT': 'var(--ui-info)',
+          'PATCH': 'var(--brand-secondary)',
+          'DELETE': 'var(--ui-error)',
+          'HEAD': 'var(--ui-text-mute)',
+          'OPTIONS': '#0ea5e9',
+          'TRACE': '#14b8a6',
+          'CONNECT': '#f43f5e'
+      };
+      return colors[method] || 'var(--ui-text-main)';
+  }
+
   function run() {
     if (!activeTab.method || activeTab.url.length == 0) {
       return;
@@ -179,7 +194,7 @@
                 {#each tabs as tab (tab.id)}
                     <div class="tab-wrapper" style="animation: slideInRight 0.4s ease forwards;">
                         <div class="tab {activeTabId === tab.id ? 'active' : ''}" on:click={() => activeTabId = tab.id}>
-                            <div class="tab-status-dot" style="background-color: var(--ui-{tab.method.toLowerCase() === 'get' ? 'success' : (tab.method.toLowerCase() === 'post' ? 'warning' : 'info')})"></div>
+                            <div class="tab-status-dot" style="background-color: {getMethodColor(tab.method)}"></div>
                             <span class="tab-method">{tab.method}</span>
                             <span class="tab-title">{tab.title}</span>
                             <div class="tab-close" on:click={(e) => closeTab(tab.id, e)}>

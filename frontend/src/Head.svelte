@@ -7,7 +7,7 @@
         Button,
     } from "carbon-components-svelte";
 
-    let methods = ["GET", "POST", "PUT", "PATCH", "DELETE", "HEAD"];
+    let methods = ["GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS", "TRACE", "CONNECT"];
     export let theMethod;
     export let url = "";
     export let btnValue = "Send";
